@@ -1,0 +1,14 @@
+<div class="layout" [ngClass]="toggle?'activeLayout':'inActiveLayout'">
+  <header class="layout_header">
+    <span class="toggle" (click)="handleToggle()">
+      <mat-icon>menu</mat-icon>
+    </span>
+    <app-header></app-header>
+  </header>
+  <nav class="layout_sidebar" >
+    <app-sidemenu [toggle] ="toggle"></app-sidemenu>
+  </nav>
+  <main class="layout_main">
+      <router-outlet></router-outlet>
+  </main>
+</div>

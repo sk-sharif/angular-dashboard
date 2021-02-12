@@ -1,0 +1,85 @@
+.layout {
+    &_sidebar {
+      &_toggle_open{
+          text-align: center;
+          height: 62px;
+          font-size: 1.6rem;
+          padding: 1rem 0;
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  
+          & span:nth-child(2){
+              color: #EE1B22;
+          }
+      }
+      &_toggle_close{
+          text-align: center;
+          height: 62px;
+          font-size: 1.6rem;
+          padding: 1rem 0;
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  
+          & span:nth-child(2){
+              color: #EE1B22;
+          }
+      }
+  
+      &_menu{
+          margin-top: 1rem;
+          & ul{
+              list-style: none;
+              & li{
+                  a{
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer; 
+                    text-decoration: none;
+                    color: #fff;  
+                  }
+                  &:hover{
+                      background: #262B40;
+                      border-left: 4px solid #EE1B22;
+                  }
+              }
+          }
+      }
+    }
+  
+  }
+  .toggle{
+      cursor: pointer;
+  }
+  
+  
+  .activeSidebar_item{
+      & li{
+          padding: 6.4px 2rem;
+          & a{
+            & mat-icon{
+                margin-right: 1rem;
+               }
+          }
+      }
+  }
+  
+  .inActiveSidebar_item{
+      & li{
+          justify-content: center;
+          & a{
+            padding: 6.4px 0;
+              & span{
+                  display: none;
+              }
+              & mat-icon{
+                  padding: 0 .7rem;
+                
+            }
+
+          }
+          
+      }
+  }
+
+  .active-route{
+    background: #262B40;
+    border-left: 4px solid #EE1B22;
+  }

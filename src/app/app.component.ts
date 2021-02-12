@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    toggle = true;
+    toggle = false;
 
     handleToggle(){
       console.log("toggle Status", this.toggle);
