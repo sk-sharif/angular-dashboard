@@ -1,1 +1,49 @@
-<p>product works!</p>
+<div class="product">
+  <div class="product_header">
+    <h1>Products</h1>
+    <div class="product_add">
+      <mat-icon>add</mat-icon>
+      <span>Add Product</span>
+    </div>
+  </div>
+  <div class="product_filter">
+    <input class="product_filter_item" type="text" placeholder="Search for Products">
+    <select class="product_filter_item">
+      <option>Categories</option>
+    </select>
+    <input class="product_filter_item" type="text" placeholder="0">
+    <input class="product_filter_item" type="text" placeholder="max">
+    <select class="product_filter_item">
+      <option>Status</option>
+    </select>
+    <button class="product_filter_item">Go</button>
+    <mat-icon class="product_filter_item">refresh</mat-icon>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th><input type="checkbox" class="cursor" /></th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>model</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of productList; let i=index; odd as isOdd;" [class.odd]="isOdd">
+        <td><input type="checkbox" class="cursor" /></td>
+        <td><img [src]="product.productImageList[0].thumbnail" alt=""></td>
+        <td>{{product.productName | slice:0:20}}...</td>
+        <td>{{product.productCode}}</td>
+        <td>{{product.salePrice}}</td>
+        <td>{{product.totalQuantity}}</td>
+        <td>{{product.available}}</td>
+        <td>Action</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

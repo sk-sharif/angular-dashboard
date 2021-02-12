@@ -11,6 +11,13 @@ import { OrderComponent } from './components/order/order.component';
 import { ProductComponent } from './components/product/product.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { FormsModule } from "@angular/forms";
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { HttpClientModule } from '@angular/common/http';
+
+
+
+
 
 
 @NgModule({
@@ -27,7 +34,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    MatCheckboxModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
