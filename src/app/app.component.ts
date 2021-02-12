@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'saptabazar-dashboard';
+    toggle = true;
+
+    handleToggle(){
+      console.log("toggle Status", this.toggle);
+      this.toggle = !this.toggle;
+    }
 }
