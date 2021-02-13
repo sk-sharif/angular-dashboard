@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpClientService } from 'src/app/shared/http-client/http-client.service';
 import { environment } from 'src/environments/environment';
@@ -14,5 +15,11 @@ export class ProductService {
   getProducts(pageNo:number,pageSize:number){
     let url = `${this.baseUrl}?pageNo=${pageNo}&pageSize=${pageSize}`
     return this.httpClientService.get(url);
+  }
+
+  saveProduct(body:any){
+    const headers = new HttpHeaders({
+    });
+    return this.httpClientService.post(this.baseUrl,body,headers);
   }
 }

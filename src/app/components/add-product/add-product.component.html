@@ -1,0 +1,138 @@
+<div class="add_product">
+    <form [formGroup]="productForm">
+        <h1>General Info</h1>
+        <hr>
+        <div class="add_product_item">
+            <div class="add_product_item_field">
+                <label>Product Type: <span class="required">*</span></label>
+                <select name="type" formControlName="type">
+                    <option value="0">-select type-</option>
+                    <option value="physical"> Physical</option>
+                    <option value="digital"> Digital</option>
+                </select>
+                <span *ngIf="!productForm.get('type')?.valid && productForm.get('type')?.touched"
+                    class="help-block">Please enter a valid type!
+                </span>
+            </div>
+            <div class="add_product_item_field">
+                <label>Product Category: <span class="required">*</span></label>
+                <select name="category" formControlName="category" (change)="selectCategory()">
+                    <option value="0">-select Category-</option>
+                    <option [ngValue]="category" *ngFor="let category of category; let i=index;">
+                        {{category.categoryName}}</option>
+
+                </select>
+            </div>
+            <div class="add_product_item_field">
+                <label>Product Sub-Category: <span class="required">*</span></label>
+                <select name="subCategory" formControlName="subCategory" (change)="selectSubCategory()">
+                    <option value="0"> -select Sub-Category-</option>
+                    <option [ngValue]="subCategory" *ngFor="let subCategory of subCategory; let i=index;">
+                        {{subCategory.subCategoryName}}</option>
+
+
+                </select>
+            </div>
+            <div class="add_product_item_field">
+                <label>Product Sub-Category-Type: <span class="required">*</span></label>
+                <select name="subCategoryType" formControlName="subCategoryType">
+                    <option value="0">-select Sub-Category-Type-</option>
+                    <option [ngValue]="subCategoryType" *ngFor="let subCategoryType of subCategoryType; let i=index;">
+                        {{subCategoryType.subCategoryTypeName}}</option>
+
+                </select>
+            </div>
+            <div class="add_product_item_field">
+                <label>Status:</label>
+                <mat-slide-toggle formControlName="status"></mat-slide-toggle>
+            </div>
+            <div class="add_product_item_field">
+                <label>Featured:</label>
+                <mat-slide-toggle formControlName="featured"></mat-slide-toggle>
+            </div>
+            <div class="add_product_item_field">
+                <label>Product Name: <span class="required">*</span></label>
+                <input type="text" placeholder="product name" formControlName="name">
+                <span *ngIf="submitted && (productForm.get('name')?.touched && !productForm.get('name')?.valid)" class="help-block">*name can't be empty!
+                </span>
+            </div>
+            <div class="add_product_item_field">
+                <label>Product Description: <span class="required">*</span></label>
+                <textarea type="text" rows="5" placeholder="product description"
+                    formControlName="description"></textarea>
+                <span *ngIf="submitted && (productForm.get('description')?.touched && !productForm.get('description')?.valid)" class="help-block">*product
+                    description can't be empty!
+                </span>
+            </div>
+            <div class="add_product_item_field">
+                <label>Product Tag:</label>
+                <input type="text" placeholder="product tag" formControlName="tag">
+            </div>
+        </div>
+        <h1>Product Data</h1>
+        <hr>
+        <div class="add_product_item">
+            <div class="add_product_item_field">
+                <label>Manufacture:</label>
+                <select name="type" formControlName="manufacture">
+                    <option value="0">-select brand-</option>
+                    <option [ngValue]="brand" *ngFor="let brand of brand; let i = index;">{{brand.brandName | titlecase}}</option>
+
+                </select>
+            </div>
+            <div class="add_product_item_field">
+                <label>Actual Price: <span class="required">*</span></label>
+                <input type="text" placeholder="actual price" formControlName="actualPrice">
+                <span *ngIf="submitted && (productForm.get('actualPrice')?.touched && !productForm.get('actualPrice')?.valid )" class="help-block">*actual price
+                    can't be empty!
+                </span>
+            </div>
+            <div class="add_product_item_field">
+                <label>Sell Price: <span class="required">*</span></label>
+                <input type="text" placeholder="sell price" formControlName="sellPrice">
+                <span *ngIf="submitted && (productForm.get('sellPrice')?.touched && !productForm.get('sellPrice')?.valid)" class="help-block">*sell price can't be
+                    empty!
+                </span>
+            </div>
+            <div class="add_product_item_field">
+                <label>Quantity: <span class="required">*</span></label>
+                <input type="text" placeholder="0" formControlName="quantity">
+                <span *ngIf="submitted && (productForm.get('quantity')?.touched && !productForm.get('quantity')?.valid)" class="help-block">*quantity can't be
+                    empty!
+                </span>
+            </div>
+            <div class="add_product_item_field">
+                <label>Size:</label>
+                <input type="text" placeholder="size" formControlName="size">
+            </div>
+            <div class="add_product_item_field">
+                <label>Color:</label>
+                <input type="text" placeholder="color" formControlName="color">
+            </div>
+            <div class="add_product_item_field">
+                <label>Product Specification: <span class="required">*</span></label>
+                <textarea type="text" rows="10" placeholder="product specification"
+                    formControlName="specification"></textarea>
+                    <span *ngIf="submitted && (productForm.get('specification')?.touched && !productForm.get('specification')?.valid)" class="help-block">*product specification can't be
+                        empty!
+                    </span>
+            </div>
+            <div class="add_product_item_field">
+                <label>Upload Images: <span class="required">*</span></label>
+                <input #filePicker  type="file" multiple="multiple" (change)="upload(filePicker.files)">
+            </div>
+        </div>
+
+        <div class="add_product_button">
+            <div class="add_product_button_save" (click)="onSaveProduct()">
+                <mat-icon class="mr-1">file_copy</mat-icon>
+                <button>Save</button>
+            </div>
+            <div class="add_product_button_cancel">
+                <mat-icon class="">keyboard_arrow_left</mat-icon>
+                <button>Cancel</button>
+            </div>
+        </div>
+
+    </form>
+</div>
