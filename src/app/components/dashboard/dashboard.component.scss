@@ -1,0 +1,150 @@
+ /* Create two equal columns that floats next to each other */
+ .column {
+    float: left;
+    width: 16.66%;
+    padding: 10px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+  
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  } 
+
+.circle {
+    text-align: center;
+    width:70px;
+    height:70px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+  border: 3px solid #EEEEEE;
+  display: flex;
+  justify-content: center;
+ align-items: center;
+ 
+  }
+  .table1row{
+    float: left;
+    width: 48.5%;
+    position: relative;
+    padding: 10px;
+   
+   
+  background-color:white;
+  //background-color: #484e66;
+  border-radius: 1%;
+  }
+  .table2row{
+    float: right;
+    width: 48.5%;
+    position: relative;
+    padding: 10px;
+    
+    // background-color:#F7F7F7;
+    background-color:white;
+    box-sizing: border-box;
+   
+  }
+  
+  
+  .tables:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .tables {
+    background-color:#E4E7EA;
+  }
+  .space{
+    width:100%;
+    height: 3%;
+    background-color:#E4E7EA;
+  }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+   // padding: 100;
+    //margin: 10px;
+  }
+  
+  td{
+   // border: 1px solid #fce3e3;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    padding: 8px;
+   // background-color: #333A56;
+   background-color: #fcf8e3;
+  }
+  .table1 td{
+    // border: 1px solid #fce3e3;
+     border-top: 1px solid #ddd;
+     text-align: center;
+     padding: 8px;
+     background-color: white;
+    
+   
+   }
+
+  .table2 td{
+    
+     border-top: 1px solid #ddd;
+     text-align: center;
+     padding: 8px;
+     background-color: white;
+    
+   
+   }
+  .table2 tr:nth-child(2n + 1) td {
+    
+    background-color: #fcf8e3;
+}
+  tr{
+    color:#636e7b;
+    
+  }
+  
+  .div1 {
+    float: left;
+    margin-top: 10px;
+}
+
+.div2 {
+    float:right;
+    text-align: right;
+    margin-top: 10px;
+}
+.overview {
+  
+   
+    background-color:blue;
+}.overview1row{
+  float: left;
+  width: 35%;
+  position: relative;
+  padding: 10px;
+ 
+
+background-color:white;
+
+border-radius: 1%;
+}
+.graph1row{
+  float: right;
+  width: 62%;
+  position: relative;
+  padding: 10px;
+  
+  
+  background-color:white;
+  box-sizing: border-box;
+ 
+}
+

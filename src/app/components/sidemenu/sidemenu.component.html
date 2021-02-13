@@ -26,5 +26,28 @@
         <span>Order</span>
       </a>
     </li>
+    <li routerLinkActive="active-route" class="sub">
+      <a routerLink="/Catalog">
+       <ul class="sub-main" >
+         <div class="sub-main-content" (click)="handleHidden()">
+          <span class="sub-main-content-name">Catalog</span>
+          <span class="sub-main-content-pic material-icons" >
+            {{hidden ? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}  
+            </span>
+         </div>
+        
+          <li [ngClass]="hidden?'sub-main-menu':'menu-hidden'">abcd</li>
+          <li [ngClass]="hidden?'sub-main-menu':'menu-hidden'">abcd</li>
+         <li [ngClass]="hidden?'sub-main-menu':'menu-hidden'">abcd</li>
+         <li [ngClass]="hidden?'sub-main-menu':'menu-hidden'">abcd</li>
+
+
+
+       </ul>
+
+      </a>
+
+    </li>
+
   </ul>
 </div>

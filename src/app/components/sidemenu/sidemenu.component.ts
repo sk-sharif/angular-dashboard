@@ -13,7 +13,12 @@ export class SidemenuComponent implements OnInit {
 
   ngOnInit(): void {
   }
+ hidden=false;
   
+    handleHidden(){
+      console.log("toggle Status", this.hidden);
+      this.hidden = !this.hidden;
+    }
 
 
 }
