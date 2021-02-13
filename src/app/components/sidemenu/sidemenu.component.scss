@@ -83,3 +83,30 @@
     background: #262B40;
     border-left: 4px solid #EE1B22;
   }
+  .sub{
+      width: 100%;
+      &-main{
+          width: 100%;
+          &-content{
+            width: 100%;
+            &-name{
+                
+                width: 90%;
+            }
+            &-pic{
+               
+                width: 10%;
+            }
+        }
+      }
+  }
+  .sub-main{
+      &-menu{
+          display: block;
+      }
+     
+
+  }
+  .menu-hidden{
+      display: none;
+  }

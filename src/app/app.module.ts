@@ -11,7 +11,18 @@ import { OrderComponent } from './components/order/order.component';
 import { ProductComponent } from './components/product/product.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+<<<<<<< HEAD
 import { ChartsModule } from 'ng2-charts';
+=======
+import { FormsModule } from "@angular/forms";
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { HttpClientModule } from '@angular/common/http';
+
+
+
+
+
+>>>>>>> 1f7979a351754885b718c68fa00b9bb0acbba6f0
 
 @NgModule({
   declarations: [
@@ -28,7 +39,13 @@ import { ChartsModule } from 'ng2-charts';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatIconModule,
+<<<<<<< HEAD
     ChartsModule
+=======
+    FormsModule,
+    MatCheckboxModule,
+    HttpClientModule
+>>>>>>> 1f7979a351754885b718c68fa00b9bb0acbba6f0
   ],
   providers: [],
   bootstrap: [AppComponent]

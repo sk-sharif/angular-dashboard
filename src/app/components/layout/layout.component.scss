@@ -32,10 +32,9 @@
       margin: .5rem;
       flex: 1;
       grid-area: main;
-      padding: var(--spacing);
       overflow-y: auto;
+      scrollbar-width: 1px;
       overflow-x: hidden;
-      -webkit-overflow-scrolling: touch;
       background-color: #FFFF;
     }
   }
@@ -71,5 +70,17 @@
               display: none;
           }
       }
-      // display: none;
   }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+::-webkit-scrollbar-track-piece {
+  background: #eee;
+
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(170, 169, 169, 0.795);
+
+}
