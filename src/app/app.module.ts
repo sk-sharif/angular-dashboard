@@ -11,13 +11,8 @@ import { OrderComponent } from './components/order/order.component';
 import { ProductComponent } from './components/product/product.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-<<<<<<< HEAD
-import { MatCheckboxModule } from '@angular/material/checkbox';
-=======
 import { ChartsModule } from 'ng2-charts';
-import { FormsModule } from "@angular/forms";
 import {MatCheckboxModule} from '@angular/material/checkbox';
->>>>>>> 2869cccd0e0b9cb02a7185c12d55ad3466876b81
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatMenuModule} from '@angular/material/menu';

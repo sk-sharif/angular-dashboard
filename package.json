@@ -22,15 +22,11 @@
     "@angular/platform-browser": "~11.0.6",
     "@angular/platform-browser-dynamic": "~11.0.6",
     "@angular/router": "~11.0.6",
-<<<<<<< HEAD
     "@ng-bootstrap/ng-bootstrap": "^9.0.2",
-    "bootstrap": "^4.5.0",
-    "popper.js": "^1.16.1",
-=======
     "bootstrap": "^4.6.0",
     "chart.js": "^2.9.4",
     "ng2-charts": "^2.4.2",
->>>>>>> 2869cccd0e0b9cb02a7185c12d55ad3466876b81
+    "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
