@@ -71,30 +71,22 @@
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
-   // padding: 100;
-    //margin: 10px;
   }
   
   td{
-   // border: 1px solid #fce3e3;
     border-top: 1px solid #ddd;
-    text-align: center;
-    padding: 8px;
-   // background-color: #333A56;
+    text-align: left;
+    padding: 8px 8px 8px 0px;
    background-color: #fcf8e3;
   }
   .table1 td{
-    // border: 1px solid #fce3e3;
      border-top: 1px solid #ddd;
-     text-align: center;
-     padding: 8px;
+     text-align: left;
+     padding: 8px 8px 8px 0;
      background-color: white;
-    
-   
    }
 
   .table2 td{
-    
      border-top: 1px solid #ddd;
      text-align: center;
      padding: 8px;
@@ -147,4 +139,3 @@ border-radius: 1%;
   box-sizing: border-box;
  
 }
-
