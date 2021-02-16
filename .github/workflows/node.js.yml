@@ -3,7 +3,7 @@ name: Angular Dashboard
 on:
   push:
     branches:
-      - master
+      - sagar
 
 jobs:
   testangularapplication:
