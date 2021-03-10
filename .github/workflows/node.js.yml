@@ -43,7 +43,7 @@ jobs:
           cd ~/angular/
           git clone https://github.com/sagarshrestha24/angular-dashboard.git
           cd angular-dashboard
-          
+          docker-compose down
           docker-compose build
           docker-compose up -d 
          
