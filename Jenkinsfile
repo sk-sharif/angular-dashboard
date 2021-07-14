@@ -68,21 +68,5 @@ stage("Deploy to Staging"){
                 }
             }
         }
-}
- 
-    post{
-        always{
-step([
-             //put your Testing
-            ])
-        }
-        success{
-            //notification webhook
-            echo 'Pipeline Execution Successfully Notification'
-}
-        failure{
-            //notification webhook
-            echo 'Pipeline Execution Failed Notification'
-}
     }
 }
