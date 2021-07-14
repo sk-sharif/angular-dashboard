@@ -1,0 +1,6 @@
+{
+  "adsbrain_feed_etl_config": {
+    "support_emails": "leopoldo@ad.net,harris@ad.net,roy@ad.net",
+    "sftp": {"username": "adsbrain", "password": "SkktPidFOx31P5rsngAH5P9"}
+  }
+}

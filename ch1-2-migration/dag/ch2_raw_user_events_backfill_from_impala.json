@@ -1,0 +1,7 @@
+{
+  "ch2_raw_user_events_backfill_from_impala": {
+    "support_emails": "archan@ad.net",
+    "clickhouse_hostname1": "ch2.data.int.dc1.ad.net",
+    "clickhouse_database1": "addotnet"
+  }
+}

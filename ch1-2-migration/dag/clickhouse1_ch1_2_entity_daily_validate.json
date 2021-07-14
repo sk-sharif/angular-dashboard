@@ -1,0 +1,9 @@
+{
+  "clickhouse1_ch1_2_entity_daily_validate": {
+    "support_emails": "archan@ad.net",
+    "clickhouse_hostname1": "clickhouse1.data.int.dc1.ad.net",
+    "clickhouse_database1": "addotnet",
+    "clickhouse_hostname2": "ch1.data.int.dc1.ad.net",
+    "clickhouse_database2": "addotnet"
+  }
+}

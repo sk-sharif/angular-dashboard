@@ -1,0 +1,7 @@
+{
+  "ch1_ad_event_to_daily_backfill_config": {
+    "support_emails": "archan@ad.net",
+    "clickhouse_hostname1": "ch1.data.int.dc1.ad.net",
+    "clickhouse_database1": "addotnet"
+  }
+}
