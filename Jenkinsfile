@@ -78,7 +78,7 @@ stage("Deploy to Staging"){
               script {
                 
 //                 cd adsbrain-feed-etl/docker-images/adsbrain-feed/
-                   dockerImage = docker build -t ${registry} adsbrain-feed-etl/docker-images/adsbrain-feed/
+                  sh ' dockerImage = docker build -t ${registry} adsbrain-feed-etl/docker-images/adsbrain-feed/'
                     docker.withRegistry( '', registryCredential ) {
                         dockerImage.push("$BUILD_NUMBER")
                         dockerImage.push('latest')
