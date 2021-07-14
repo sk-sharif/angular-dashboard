@@ -5,7 +5,7 @@ pipeline {
         //put your own environment variables
         registry = "akanshagiriya/angular"
     registryCredential = 'Docker_cred'
-    dockerImage = ''
+//     dockerImage = ''
 }
  
     stages {
@@ -70,6 +70,7 @@ stage("Deploy to Staging"){
             }
         }
                 stage('Build project A') {
+                  environment {dockerImage = ''}
             when {
                 changeset "adsbrain-feed-etl/**"
             }
