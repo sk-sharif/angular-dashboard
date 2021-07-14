@@ -76,9 +76,10 @@ stage("Deploy to Staging"){
             steps {
                 echo 'changed in Build A'
               script {
-                
-//                 cd adsbrain-feed-etl/docker-images/adsbrain-feed/
-                  sh 'docker build -t ${registry} adsbrain-feed-etl/docker-images/adsbrain-feed/ + ":$BUILD_NUMBER"'
+                sh '''
+                cd adsbrain-feed-etl/docker-images/adsbrain-feed/
+                  docker build -t ${registry} . + ":$BUILD_NUMBER"'
+                    '''
                     docker.withRegistry( '', registryCredential ) {
                       sh 'docker push ${registry}:"$BUILD_NUMBER"'
                     }
