@@ -72,6 +72,9 @@ stage("Deploy to Staging"){
             when {
                 tag pattern: '^release-*', comparator: "REGEXP"
             }
+     steps {
+        echo 'tags'
+     }
         }
     }
 }
