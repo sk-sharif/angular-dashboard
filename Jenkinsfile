@@ -42,6 +42,12 @@ stage("Deploy to Production"){
             }
             steps { 
                 echo 'we are in master'
+              when {
+                changeset "adsbrain-feed-etl/**"
+            }
+            steps {
+                echo 'changed in Build A'
+            }
              }
             post{
                 success{
@@ -57,12 +63,7 @@ stage("Deploy to Staging"){
                 branch 'staging'
             }
             steps {
-              when {
-                changeset "adsbrain-feed-etl/**"
-            }
-            steps {
-                echo 'changed in Build A'
-            }
+              echo 'staging'
              }
             post{
                 success{
