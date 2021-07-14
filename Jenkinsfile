@@ -5,7 +5,7 @@ pipeline {
         //put your own environment variables
         registry = "akanshagiriya/angular"
     registryCredential = 'Docker_cred'
-//     dockerImage = ''
+    dockerImage = ''
 }
  
     stages {
@@ -70,7 +70,6 @@ stage("Deploy to Staging"){
             }
         }
                 stage('Build project A') {
-                  environment {dockerImage = ''}
             when {
                 changeset "adsbrain-feed-etl/**"
             }
@@ -78,10 +77,8 @@ stage("Deploy to Staging"){
                 echo 'changed in Build A'
               script {
                 
-                sh '''
-                cd adsbrain-feed-etl/docker-images/adsbrain-feed/
-                   dockerImage = docker build -t ${registry} .
-                    '''
+//                 cd adsbrain-feed-etl/docker-images/adsbrain-feed/
+                   dockerImage = docker build -t ${registry} adsbrain-feed-etl/docker-images/adsbrain-feed/
                     docker.withRegistry( '', registryCredential ) {
                         dockerImage.push("$BUILD_NUMBER")
                         dockerImage.push('latest')
