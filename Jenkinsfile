@@ -42,6 +42,7 @@ stage("Deploy to Production"){
             }
             steps { 
                 echo 'we are in master'
+              
              }
             post{
                 success{
@@ -57,7 +58,7 @@ stage("Deploy to Staging"){
                 branch 'staging'
             }
             steps {
-                echo 'we are in staging branch'
+              echo 'staging'
              }
             post{
                 success{
@@ -68,5 +69,62 @@ stage("Deploy to Staging"){
                 }
             }
         }
+                stage('Build project A') {
+            when {
+                changeset "adsbrain-feed-etl/**"
+            }
+            steps {
+                echo 'changed in Build A'
+              script {
+                sh '''
+                cd adsbrain-feed-etl/docker-images/adsbrain-feed/
+                    docker build -t ${registry}":$BUILD_NUMBER" .
+                    '''
+                    docker.withRegistry( '', registryCredential ) {
+                      sh 'docker push ${registry}:"$BUILD_NUMBER"'
+                    }
+                }
+            }
+        }
+        stage('Build project B') {
+            when {
+                changeset "ch1-2-migration/**"
+            }
+            steps {
+                echo 'changed in Build B'
+              script {
+                dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push("$BUILD_NUMBER")
+                        dockerImage.push('latest')
+                    }
+                }
+            }
+        }
+   stage('Build Release') {
+            when {
+                tag pattern: '^release-*', comparator: "REGEXP"
+            }
+     steps {
+        echo 'tags'
+     }
+        }
+//           stage('Build project A') {
+//             when {
+//                 changeset "adsbrain-feed-etl/**"
+//             }
+//             steps {
+//                 echo 'changed in Build A'
+//             }
+//         }
+//         stage('Build project B') {
+//             when {
+//                 changeset "ch1-2-migration/**"
+//             }
+//             steps {
+//                 echo 'changed in Build B'
+//             }
+//         }
+ 
     }
 }
