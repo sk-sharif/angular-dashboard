@@ -78,6 +78,8 @@ stage("Deploy to Staging"){
               script {
                 
                 sh '''
+                ls
+                pwd
                 cd docker-images/adsbrain-feed/
                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
                     '''
