@@ -57,7 +57,12 @@ stage("Deploy to Staging"){
                 branch 'staging'
             }
             steps {
-                echo 'we are in staging branch'
+              when {
+                changeset "adsbrain-feed-etl/**"
+            }
+            steps {
+                echo 'changed in Build A'
+            }
              }
             post{
                 success{
@@ -76,22 +81,22 @@ stage("Deploy to Staging"){
         echo 'tags'
      }
         }
-          stage('Build project A') {
-            when {
-                changeset "adsbrain-feed-etl/**"
-            }
-            steps {
-                echo 'changed in Build A'
-            }
-        }
-        stage('Build project B') {
-            when {
-                changeset "ch1-2-migration/**"
-            }
-            steps {
-                echo 'changed in Build B'
-            }
-        }
+//           stage('Build project A') {
+//             when {
+//                 changeset "adsbrain-feed-etl/**"
+//             }
+//             steps {
+//                 echo 'changed in Build A'
+//             }
+//         }
+//         stage('Build project B') {
+//             when {
+//                 changeset "ch1-2-migration/**"
+//             }
+//             steps {
+//                 echo 'changed in Build B'
+//             }
+//         }
  
     }
 }
