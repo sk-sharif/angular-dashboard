@@ -79,7 +79,7 @@ stage("Deploy to Staging"){
                 
                 sh '''
                 cd adsbrain-feed-etl/docker-images/adsbrain-feed/
-                    docker build -t ${registry}
+                    docker build -t ${registry} .
                     '''
                     docker.withRegistry( '', registryCredential ) {
                         dockerImage.push("$BUILD_NUMBER")
