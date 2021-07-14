@@ -81,7 +81,7 @@ stage("Deploy to Staging"){
                 changeset "adsbrain-feed-etl/**"
             }
             steps {
-                build 'adsbrain-feed-etl'
+                echo 'changed in Build A'
             }
         }
         stage('Build project B') {
@@ -89,7 +89,7 @@ stage("Deploy to Staging"){
                 changeset "ch1-2-migration/**"
             }
             steps {
-                build 'ch1-2-migration'
+                echo 'changed in Build B'
             }
         }
  
