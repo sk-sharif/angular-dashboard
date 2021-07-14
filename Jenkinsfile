@@ -10,31 +10,31 @@ pipeline {
  
     stages {
        
-      stage('Building image') {
-      steps{
-        script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        }
-      }
-    }
-    stage('Push Image') {
-            steps{
-                script {
-                    docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push("$BUILD_NUMBER")
-                        dockerImage.push('latest')
-                    }
-                }
-            }
-            post{
-                success{
-                    echo "Build and Push Successfully"
-                }
-                failure{
-                    echo "Build and Push Failed"
-                }
-            }
-        }
+//       stage('Building image') {
+//       steps{
+//         script {
+//           dockerImage = docker.build registry + ":$BUILD_NUMBER"
+//         }
+//       }
+//     }
+//     stage('Push Image') {
+//             steps{
+//                 script {
+//                     docker.withRegistry( '', registryCredential ) {
+//                         dockerImage.push("$BUILD_NUMBER")
+//                         dockerImage.push('latest')
+//                     }
+//                 }
+//             }
+//             post{
+//                 success{
+//                     echo "Build and Push Successfully"
+//                 }
+//                 failure{
+//                     echo "Build and Push Failed"
+//                 }
+//             }
+//         }
 
 stage("Deploy to Production"){
             when {
