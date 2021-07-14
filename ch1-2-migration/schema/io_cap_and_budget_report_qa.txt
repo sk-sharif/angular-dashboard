@@ -1,0 +1,133 @@
+## download the reports and remove the sr number columns, make sure to install q (http://harelba.github.io/q/)
+
+cat ./budget_io_caps_test_9.csv | sed 's/ /_/g' | sed 's/%_/percent_/g' | q -d, -H -O "select * from -" >budget_io_caps_test_1_qa.csv &&
+cat ./io_caps_existing_report_9.csv | sed 's/ /_/g' | sed 's/%_/percent_/g' | q -d, -H -O "select * from -" >io_caps_existing_report_1_qa.csv
+
+
+MacBook-Pro:Downloads archangohel$ q -d, -T -A -H "select * from ./io_caps_existing_report_1_qa.csv"
+Table for file: ./io_caps_existing_report_1_qa.csv
+  `Advertiser` - text
+  `Io_Revenue_Cap` - text
+  `Io_Total_Day` - int
+  `Io_Elapsed_Day` - int
+  `Io_Start_Date` - text
+  `Io_End_Date` - text
+  `Revenue` - text
+  `IO_Spent` - text
+  `percent_Day_Elapsed` - text
+  `percent_Pacing` - text
+  `Avg_Daily_Spend` - text
+  `Target_Daily_Spend` - text
+  `Yesterday_Revenue` - text
+  `Today_Revenue` - text
+MacBook-Pro:Downloads archangohel$ q -d, -T -A -H "select * from ./budget_io_caps_test_1_qa.csv"
+Table for file: ./budget_io_caps_test_1_qa.csv
+  `advertiser_name` - text
+  `IO_Elapsed_Days` - int
+  `IO_End_Date` - text
+  `IO_Revenue_Cap` - text
+  `IO_Start_Date` - text
+  `IO_Total_Day` - int
+  `Advertiser_Budget` - text
+  `percent_IO_Day_Elapsed` - text
+  `percent_IO_Spent` - text
+  `percent_IO_Pacing` - text
+  `IO_Avg_Daily_Spend` - text
+  `IO_Caps_Revenue` - text
+  `IO_Target_Daily_Spend` - text
+  `Today_Revenue` - text
+  `Yesterday_Revenue` - text
+  `Budget_Revenue` - text
+  `Budget_Future_Daily_Revenue_Needed` - text
+  `Budget_Projected_Pacing` - text
+  `Budget_Pacing` - text
+  `percent_Budget_Pacing` - text
+  `Last_7_Days_Avg_Revenue` - text
+
+
+
+
+q -d, -T -H -O  "select io.Advertiser,replace(replace(replace(b.IO_Elapsed_Days,',',''),'$',''),'%','') as IO_Elapsed_Days,replace(replace(replace(io.IO_Elapsed_Day,',',''),'$',''),'%','') as IO_Elapsed_Day,(replace(replace(replace(b.IO_Elapsed_Days,',',''),'$',''),'%','') -replace(replace(replace(io.IO_Elapsed_Day,',',''),'$',''),'%','')) as diff from ./io_caps_existing_report_1_qa.csv io JOIN ./budget_io_caps_test_1_qa.csv b on b.advertiser_name=io.Advertiser WHERE abs(diff) >0.01" && echo " " &&
+
+q -d, -T -H -O  "select io.Advertiser,replace(replace(replace(b.IO_Revenue_Cap,',',''),'$',''),'%','') as IO_Revenue_Cap,replace(replace(replace(io.Io_Revenue_Cap,',',''),'$',''),'%','') as Io_Revenue_Cap,(replace(replace(replace(b.IO_Revenue_Cap,',',''),'$',''),'%','') -replace(replace(replace(io.Io_Revenue_Cap,',',''),'$',''),'%','')) as diff from ./io_caps_existing_report_1_qa.csv io JOIN ./budget_io_caps_test_1_qa.csv b on b.advertiser_name=io.Advertiser WHERE abs(diff) >0.01" && echo " " &&
+
+q -d, -T -H -O  "select io.Advertiser,replace(replace(replace(b.IO_Total_Day,',',''),'$',''),'%','') as IO_Total_Day,replace(replace(replace(io.IO_Total_Day,',',''),'$',''),'%','') as IO_Total_Day,(replace(replace(replace(b.IO_Total_Day,',',''),'$',''),'%','') -replace(replace(replace(io.IO_Total_Day,',',''),'$',''),'%','')) as diff from ./io_caps_existing_report_1_qa.csv io JOIN ./budget_io_caps_test_1_qa.csv b on b.advertiser_name=io.Advertiser WHERE abs(diff) >0.01" && echo " " &&
+
+q -d, -T -H -O  "select io.Advertiser,replace(replace(replace(b.IO_Caps_Revenue,',',''),'$',''),'%','') as IO_Caps_Revenue,replace(replace(replace(io.Revenue,',',''),'$',''),'%','') as Revenue,(replace(replace(replace(b.IO_Caps_Revenue,',',''),'$',''),'%','') -replace(replace(replace(io.Revenue,',',''),'$',''),'%','')) as diff from ./io_caps_existing_report_1_qa.csv io JOIN ./budget_io_caps_test_1_qa.csv b on b.advertiser_name=io.Advertiser WHERE abs(diff) >0.01" && echo " " &&
+
+q -d, -T -H -O  "select io.Advertiser,replace(replace(replace(b.IO_Avg_Daily_Spend,',',''),'$',''),'%','') as IO_Avg_Daily_Spend,replace(replace(replace(io.Avg_Daily_Spend,',',''),'$',''),'%','') as Avg_Daily_Spend,(replace(replace(replace(b.IO_Avg_Daily_Spend,',',''),'$',''),'%','') -replace(replace(replace(io.Avg_Daily_Spend,',',''),'$',''),'%','')) as diff from ./io_caps_existing_report_1_qa.csv io JOIN ./budget_io_caps_test_1_qa.csv b on b.advertiser_name=io.Advertiser WHERE abs(diff) >0.01" && echo " " &&
+
+q -d, -T -H -O  "select io.Advertiser,replace(replace(replace(b.IO_Avg_Daily_Spend,',',''),'$',''),'%','') as IO_Avg_Daily_Spend,replace(replace(replace(io.Avg_Daily_Spend,',',''),'$',''),'%','') as Avg_Daily_Spend,(replace(replace(replace(b.IO_Avg_Daily_Spend,',',''),'$',''),'%','') -replace(replace(replace(io.Avg_Daily_Spend,',',''),'$',''),'%','')) as diff from ./io_caps_existing_report_1_qa.csv io JOIN ./budget_io_caps_test_1_qa.csv b on b.advertiser_name=io.Advertiser WHERE abs(diff) >0.01" && echo " " &&
+
+
+q -d, -T -H -O  "select io.Advertiser,replace(replace(replace(b.percent_IO_Day_Elapsed,',',''),'$',''),'%','') as percent_IO_Day_Elapsed,replace(replace(replace(io.percent_Day_Elapsed,',',''),'$',''),'%','') as percent_Day_Elapsed,(replace(replace(replace(b.percent_IO_Day_Elapsed,',',''),'$',''),'%','') -replace(replace(replace(io.percent_Day_Elapsed,',',''),'$',''),'%','')) as diff from ./io_caps_existing_report_1_qa.csv io JOIN ./budget_io_caps_test_1_qa.csv b on b.advertiser_name=io.Advertiser WHERE abs(diff) >0.01" && echo " " &&
+
+
+q -d, -T -H -O  "select io.Advertiser,replace(replace(replace(b.percent_IO_Pacing,',',''),'$',''),'%','') as percent_IO_Pacing,replace(replace(replace(io.percent_Pacing,',',''),'$',''),'%','') as percent_Pacing,(replace(replace(replace(b.percent_IO_Pacing,',',''),'$',''),'%','') -replace(replace(replace(io.percent_Pacing,',',''),'$',''),'%','')) as diff from ./io_caps_existing_report_1_qa.csv io JOIN ./budget_io_caps_test_1_qa.csv b on b.advertiser_name=io.Advertiser WHERE abs(diff) >0.01" && echo " " &&
+
+q -d, -T -H -O  "select io.Advertiser,replace(replace(replace(b.IO_Target_Daily_Spend,',',''),'$',''),'%','') as IO_Target_Daily_Spend,replace(replace(replace(io.Target_Daily_Spend,',',''),'$',''),'%','') as Target_Daily_Spend,(replace(replace(replace(b.IO_Target_Daily_Spend,',',''),'$',''),'%','') -replace(replace(replace(io.Target_Daily_Spend,',',''),'$',''),'%','')) as diff from ./io_caps_existing_report_1_qa.csv io JOIN ./budget_io_caps_test_1_qa.csv b on b.advertiser_name=io.Advertiser WHERE abs(diff) >0.01 " && echo " " &&
+
+q -d, -T -H -O  "select io.Advertiser,replace(replace(replace(b.Yesterday_Revenue,',',''),'$',''),'%','') as Yesterday_Revenue,replace(replace(replace(io.Yesterday_Revenue,',',''),'$',''),'%','') as Yesterday_Revenue,(replace(replace(replace(b.Yesterday_Revenue,',',''),'$',''),'%','') -replace(replace(replace(io.Yesterday_Revenue,',',''),'$',''),'%','')) as diff from ./io_caps_existing_report_1_qa.csv io JOIN ./budget_io_caps_test_1_qa.csv b on b.advertiser_name=io.Advertiser WHERE abs(diff) >0.01" && echo " " &&
+
+q -d, -T -H -O  "select io.Advertiser,replace(replace(replace(b.Today_Revenue,',',''),'$',''),'%','') as budget_Today_Revenue,replace(replace(replace(io.Today_Revenue,',',''),'$',''),'%','') as Today_Revenue,(replace(replace(replace(b.Today_Revenue,',',''),'$',''),'%','') -replace(replace(replace(io.Today_Revenue,',',''),'$',''),'%','')) as diff from ./io_caps_existing_report_1_qa.csv io JOIN ./budget_io_caps_test_1_qa.csv b on b.advertiser_name=io.Advertiser WHERE abs(diff) >0.01"
+
+
+
+cat ./budget_io_caps_test_8.csv | sed 's/ /_/g' | sed 's/%_/percent_/g' | q -d, -H -O "select * from -" >budget_io_caps_test_2_qa.csv &&
+cat ./budget_monthy_report_existing_8.csv | sed 's/ /_/g' | sed 's/%_/percent_/g' | q -d, -H -O "select * from -" > budget_monthy_report_existing_qa.csv
+
+Table for file: ./budget_io_caps_test_2_qa.csv
+  `advertiser_name` - text
+  `IO_Elapsed_Days` - int
+  `IO_End_Date` - text
+  `IO_Revenue_Cap` - text
+  `IO_Start_Date` - text
+  `IO_Total_Day` - int
+  `Advertiser_Budget` - text
+  `percent_IO_Day_Elapsed` - text
+  `percent_IO_Spent` - text
+  `percent_IO_Pacing` - text
+  `IO_Avg_Daily_Spend` - text
+  `IO_Caps_Revenue` - text
+  `IO_Target_Daily_Spend` - text
+  `Today_Revenue` - text
+  `Yesterday_Revenue` - text
+  `Budget_Revenue` - text
+  `Budget_Future_Daily_Revenue_Needed` - text
+  `Budget_Projected_Pacing` - text
+  `Budget_Pacing` - text
+  `percent_Budget_Pacing` - text
+  `Last_7_Days_Avg_Revenue` - text
+MacBook-Pro:Downloads archangohel$ q -d, -T -A -H "select * from ./budget_monthy_report_existing_qa.csv"
+Table for file: ./budget_monthy_report_existing_qa.csv
+  `Advertiser_Budget_Amount` - text
+  `Advertiser` - text
+  `Yesterday_Revenue` - text
+  `Today_Revenue` - text
+  `Revenue` - text
+  `Future_Daily_Revenue_Needed` - text
+  `Projected_Pacing` - text
+  `Pacing` - text
+  `percent_Pacing` - text
+  `Last_7_Days_Avg_Revenue` - text
+
+
+q -d, -T -H -O  "select io.advertiser_name,replace(replace(replace(b.Advertiser_Budget_Amount,',',''),'$',''),'%','') as Advertiser_Budget_Amount,replace(replace(replace(io.Advertiser_Budget,',',''),'$',''),'%','') as Advertiser_Budget,(replace(replace(replace(b.Advertiser_Budget_Amount,',',''),'$',''),'%','') -replace(replace(replace(io.Advertiser_Budget,',',''),'$',''),'%','')) as diff from ./budget_io_caps_test_2_qa.csv io JOIN ./budget_monthy_report_existing_qa.csv b on b.Advertiser=io.advertiser_name WHERE abs(diff) >0.01" && echo " " &&
+
+q -d, -T -H -O  "select io.advertiser_name,replace(replace(replace(b.Yesterday_Revenue,',',''),'$',''),'%','') as Yesterday_Revenue,replace(replace(replace(io.Yesterday_Revenue,',',''),'$',''),'%','') as Yesterday_Revenue,(replace(replace(replace(b.Yesterday_Revenue,',',''),'$',''),'%','') -replace(replace(replace(io.Yesterday_Revenue,',',''),'$',''),'%','')) as diff from ./budget_io_caps_test_2_qa.csv io JOIN ./budget_monthy_report_existing_qa.csv b on b.Advertiser=io.advertiser_name WHERE abs(diff) >0.01" && echo " " &&
+
+q -d, -T -H -O  "select io.advertiser_name,replace(replace(replace(b.Today_Revenue,',',''),'$',''),'%','') as budget_Today_Revenue,replace(replace(replace(io.Today_Revenue,',',''),'$',''),'%','') as Today_Revenue,(replace(replace(replace(b.Today_Revenue,',',''),'$',''),'%','') -replace(replace(replace(io.Today_Revenue,',',''),'$',''),'%','')) as diff from ./budget_io_caps_test_2_qa.csv io JOIN ./budget_monthy_report_existing_qa.csv b on b.Advertiser=io.advertiser_name WHERE abs(diff) >0.01" && echo " " &&
+
+q -d, -T -H -O  "select io.advertiser_name,replace(replace(replace(b.Revenue,',',''),'$',''),'%','') as Revenue,replace(replace(replace(io.Budget_Revenue,',',''),'$',''),'%','') as Budget_Revenue,(replace(replace(replace(b.Revenue,',',''),'$',''),'%','') -replace(replace(replace(io.Budget_Revenue,',',''),'$',''),'%','')) as diff from ./budget_io_caps_test_2_qa.csv io JOIN ./budget_monthy_report_existing_qa.csv b on b.Advertiser=io.advertiser_name WHERE abs(diff) >0.01" && echo " " &&
+
+q -d, -T -H -O  "select io.advertiser_name,replace(replace(replace(b.Future_Daily_Revenue_Needed,',',''),'$',''),'%','') as Future_Daily_Revenue_Needed,replace(replace(replace(io.Budget_Future_Daily_Revenue_Needed,',',''),'$',''),'%','') as Budget_Future_Daily_Revenue_Needed,(replace(replace(replace(b.Future_Daily_Revenue_Needed,',',''),'$',''),'%','') -replace(replace(replace(io.Budget_Future_Daily_Revenue_Needed,',',''),'$',''),'%','')) as diff from ./budget_io_caps_test_2_qa.csv io JOIN ./budget_monthy_report_existing_qa.csv b on b.Advertiser=io.advertiser_name WHERE abs(diff) >0.01" && echo " " &&
+
+q -d, -T -H -O  "select io.advertiser_name,replace(replace(replace(b.Projected_Pacing,',',''),'$',''),'%','') as Projected_Pacing,replace(replace(replace(io.Budget_Projected_Pacing,',',''),'$',''),'%','') as Budget_Projected_Pacing,(replace(replace(replace(b.Projected_Pacing,',',''),'$',''),'%','') -replace(replace(replace(io.Budget_Projected_Pacing,',',''),'$',''),'%','')) as diff from ./budget_io_caps_test_2_qa.csv io JOIN ./budget_monthy_report_existing_qa.csv b on b.Advertiser=io.advertiser_name WHERE abs(diff) >0.01" && echo " " &&
+
+q -d, -T -H -O  "select io.advertiser_name,replace(replace(replace(b.Pacing,',',''),'$',''),'%','') as Pacing,replace(replace(replace(io.Budget_Pacing,',',''),'$',''),'%','') as Budget_Pacing,(replace(replace(replace(b.Pacing,',',''),'$',''),'%','') -replace(replace(replace(io.Budget_Pacing,',',''),'$',''),'%','')) as diff from ./budget_io_caps_test_2_qa.csv io JOIN ./budget_monthy_report_existing_qa.csv b on b.Advertiser=io.advertiser_name WHERE abs(diff) >0.01" && echo " " &&
+
+q -d, -T -H -O  "select io.advertiser_name,replace(replace(replace(b.percent_Pacing,',',''),'$',''),'%','') as percent_Pacing,replace(replace(replace(io.percent_Budget_Pacing,',',''),'$',''),'%','') as percent_Budget_Pacing,(replace(replace(replace(b.percent_Pacing,',',''),'$',''),'%','') -replace(replace(replace(io.percent_Budget_Pacing,',',''),'$',''),'%','')) as diff from ./budget_io_caps_test_2_qa.csv io JOIN ./budget_monthy_report_existing_qa.csv b on b.Advertiser=io.advertiser_name WHERE abs(diff) >0.01" && echo " " &&
+
+q -d, -T -H -O  "select io.advertiser_name,replace(replace(replace(b.Last_7_Days_Avg_Revenue,',',''),'$',''),'%','') as budget_Last_7_Days_Avg_Revenue,replace(replace(replace(io.Last_7_Days_Avg_Revenue,',',''),'$',''),'%','') as Last_7_Days_Avg_Revenue,(replace(replace(replace(b.Last_7_Days_Avg_Revenue,',',''),'$',''),'%','') -replace(replace(replace(io.Last_7_Days_Avg_Revenue,',',''),'$',''),'%','')) as diff from ./budget_io_caps_test_2_qa.csv io JOIN ./budget_monthy_report_existing_qa.csv b on b.Advertiser=io.advertiser_name WHERE abs(diff) >0.01"
+
+

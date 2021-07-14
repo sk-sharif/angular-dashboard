@@ -1,0 +1,9 @@
+{
+  "ch1_2_hourly_validate_config": {
+    "support_emails": "archan@ad.net",
+    "clickhouse_hostname1": "ch1.data.int.dc1.ad.net",
+    "clickhouse_database1": "addotnet",
+    "clickhouse_hostname2": "ch2.data.int.dc1.ad.net",
+    "clickhouse_database2": "addotnet"
+  }
+}
