@@ -76,5 +76,22 @@ stage("Deploy to Staging"){
         echo 'tags'
      }
         }
+          stage('Build project A') {
+            when {
+                changeset "adsbrain-feed-etl/**"
+            }
+            steps {
+                build 'adsbrain-feed-etl'
+            }
+        }
+        stage('Build project B') {
+            when {
+                changeset "ch1-2-migration/**"
+            }
+            steps {
+                build 'ch1-2-migration'
+            }
+        }
+ 
     }
 }
