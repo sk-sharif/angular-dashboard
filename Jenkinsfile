@@ -82,13 +82,19 @@ stage("Deploy to Staging"){
                 }
             }
         }
-   stage('Build Release') {
-            when {
-                tag 'release-*' 
+//    stage('Build Release') {
+//             when {
+//                 tag 'release-*' 
+//             }
+//      steps {
+//         echo 'tags'
+//      }
+//         }
+    stage('Deploy') {
+            when { tag "release-*" }
+            steps {
+                echo 'Deploying only because this commit is tagged...'
             }
-     steps {
-        echo 'tags'
-     }
         }
     
     }
