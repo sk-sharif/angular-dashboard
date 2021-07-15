@@ -79,11 +79,11 @@ pipeline {
     
     
     stage("Deploying Master branch"){
-      when { allOf {
+      when {
           branch 'master';
           changeset "adsbrain-feed-etl/**";
           changeset "ch1-2-migration/**"
-      }
+      
       }
       steps {
         echo 'Deployed Master Branch'
@@ -91,11 +91,11 @@ pipeline {
     }
     
     stage("Deploying Staging branch"){
-      when { allOf {
+      when {
           branch 'staging';
           changeset "adsbrain-feed-etl/**";
           changeset "ch1-2-migration/**"
-      }
+      
       }
       steps {
         echo 'Deployed Staging Branch'
@@ -104,11 +104,11 @@ pipeline {
     
     stage("Deploying Test branch"){
       when {
-        allOf {
+        
           branch 'test';
           changeset "adsbrain-feed-etl/**";
           changeset "ch1-2-migration/**"
-        }
+        
       }
       steps {
         echo 'Deployed Test Branch'
