@@ -81,7 +81,7 @@ stage("Deploy to Staging"){
             }
         }
    stage('Build Release') {
-              when { tag pattern: "v*", comparator: "REGEXP"}
+              when { tag pattern: "^v*", comparator: "REGEXP"}
      steps {
        echo "Building ${env.TAG_NAME}"
      }
