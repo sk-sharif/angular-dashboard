@@ -1,47 +1,21 @@
 pipeline {
  agent any
     environment {
-        
-        //put your own environment variables
         registry = "akanshagiriya/angular"
     registryCredential = 'Docker_cred'
     dockerImage = ''
 }
  
-    stages {
-       
-//       stage('Building image') {
-//       steps{
-//         script {
-//           dockerImage = docker.build registry + ":$BUILD_NUMBER"
-//         }
-//       }
-//     }
-//     stage('Push Image') {
-//             steps{
-//                 script {
-//                     docker.withRegistry( '', registryCredential ) {
-//                         dockerImage.push("$BUILD_NUMBER")
-//                         dockerImage.push('latest')
-//                     }
-//                 }
-//             }
-//             post{
-//                 success{
-//                     echo "Build and Push Successfully"
-//                 }
-//                 failure{
-//                     echo "Build and Push Failed"
-//                 }
-//             }
-//         }
+  stages {
 
 stage("Deploy to Production"){
             when {
                 branch 'master'
             }
             steps { 
-                echo 'we are in master'
+                script {
+                  echo 'master branch'
+                }
               
              }
             post{
@@ -101,30 +75,22 @@ stage("Deploy to Staging"){
                 }
             }
         }
-   stage('Build Release') {
-            when {
-                tag pattern: '^release-*', comparator: "REGEXP"
-            }
-     steps {
-        echo 'tags'
-     }
-        }
-//           stage('Build project A') {
+//    stage('Build Release') {
+//               when { tag pattern: "\\d+\\.\\d+\\.\\d", comparator: "REGEXP"}
+//      steps {
+//        echo "Building ${env.TAG_NAME}"
+//      }
+//         }
+//     stage('Deploy') {
 //             when {
-//                 changeset "adsbrain-feed-etl/**"
-//             }
+//     expression {
+//         env.TAG_NAME != null
+//     }
+// }
 //             steps {
-//                 echo 'changed in Build A'
+//                 echo 'Deploying only because this commit is tagged...'
 //             }
 //         }
-//         stage('Build project B') {
-//             when {
-//                 changeset "ch1-2-migration/**"
-//             }
-//             steps {
-//                 echo 'changed in Build B'
-//             }
-//         }
- 
+    
     }
 }
