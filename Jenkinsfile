@@ -81,7 +81,7 @@ stage("Deploy to Staging"){
             }
         }
    stage('Build Release') {
-              when { tag pattern: "v1.0", comparator: "REGEXP"}
+              when { tag pattern: "v1.2", comparator: "REGEXP"}
      steps {
         echo 'tags'
      }
