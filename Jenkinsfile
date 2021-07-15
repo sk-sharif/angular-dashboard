@@ -50,12 +50,15 @@ stage("Deploy to Staging"){
             steps {
                 echo 'changed in Build A'
               script {
-                sh '''
-                cd adsbrain-feed-etl/docker-images/adsbrain-feed/
-                    docker build -t ${registry}":$BUILD_NUMBER" .
-                    '''
+//                 sh '''
+//                 cd adsbrain-feed-etl/docker-images/adsbrain-feed/
+//                     docker build -t ${registry}":$BUILD_NUMBER" .
+//                     '''
                     docker.withRegistry( '', registryCredential ) {
-                      sh 'docker push ${registry}:"$BUILD_NUMBER"'
+//                       sh 'docker push ${registry}:"$BUILD_NUMBER"'
+                    def dockerfile = 'Dockerfile'
+                      def customImage = docker.build("${registry}:${BUILD_NUMBER}", "-f ./adsbrain-feed-etl/docker-images/adsbrain-feed/${dockerfile} ./adsbrain-feed-etl/docker-images/adsbrain-feed/")
+                            customImage.push()
                     }
                 }
             }
