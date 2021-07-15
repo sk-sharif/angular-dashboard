@@ -40,7 +40,7 @@ pipeline {
         changeset "adsbrain-feed-etl/**"
       }
       steps {
-        echo 'changed in Build A'
+        echo 'Building in Build A'
         script {
           docker.withRegistry( '', registryCredential ) {
             def dockerfile = 'Dockerfile'
@@ -56,7 +56,7 @@ pipeline {
         changeset "ch1-2-migration/**"
       }
       steps {
-        echo 'changed in Build B'
+        echo 'Building in Build B'
         script {
           docker.withRegistry( '', registryCredential ) {
             def dockerfile = 'Dockerfile'
