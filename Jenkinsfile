@@ -15,11 +15,6 @@ stage("Deploy to Production"){
             steps { 
                 script {
                   echo 'master branch'
-                    if (env.BRANCH_NAME == 'master') {
-                        echo 'I only execute on the master branch'
-                    } else {
-                        echo 'I execute elsewhere'
-                    }
                 }
               
              }
