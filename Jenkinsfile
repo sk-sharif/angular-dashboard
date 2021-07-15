@@ -80,11 +80,10 @@ pipeline {
     
     stage("Deploying Master branch"){
       when {
-        anyOf {
           branch 'master';
           changeset "adsbrain-feed-etl/**";
           changeset "ch1-2-migration/**"
-        }
+        
       }
       steps {
         echo 'Deployed Master Branch'
