@@ -75,12 +75,20 @@ stage("Deploy to Staging"){
                 }
             }
         }
-   stage('Build Release') {
-              when { tag pattern: "\\d+\\.\\d+\\.\\d", comparator: "REGEXP"}
-     steps {
-       echo "Building ${env.TAG_NAME}"
-     }
+//    stage('Build Release') {
+//               when { tag pattern: "\\d+\\.\\d+\\.\\d", comparator: "REGEXP"}
+//      steps {
+//        echo "Building ${env.TAG_NAME}"
+//      }
+//         }
+    
+    def tag = sh(returnStdout: true, script: "git tag --contains | head -1").trim()
+    if (tag) {
+        stage("deploy.....") {
+            echo 'deploy'
         }
+    }
+    
 //     stage('Deploy') {
 //             when {
 //     expression {
