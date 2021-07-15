@@ -81,13 +81,13 @@ stage("Deploy to Staging"){
 //        echo "Building ${env.TAG_NAME}"
 //      }
 //         }
-    
-    tag = sh(returnStdout: true, script: "git tag --contains | head -1").trim()
-    if (tag) {
-        stage("deploy.....") {
-            echo 'deploy'
-        }
-    }
+    sh 'git tag --contains | head -1'
+//     def tag = sh(returnStdout: true, script: "git tag --contains | head -1").trim()
+//     if (tag) {
+//         stage("deploy.....") {
+//             echo 'deploy'
+//         }
+//     }
     
 //     stage('Deploy') {
 //             when {
