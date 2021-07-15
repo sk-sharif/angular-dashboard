@@ -1,130 +1,120 @@
 pipeline {
  agent any
-    environment {
-        
-        //put your own environment variables
-        registry = "akanshagiriya/angular"
+  environment {
+    registry = "akanshagiriya/angular"
     registryCredential = 'Docker_cred'
-    dockerImage = ''
-}
+  }
  
-    stages {
-       
-//       stage('Building image') {
-//       steps{
-//         script {
-//           dockerImage = docker.build registry + ":$BUILD_NUMBER"
-//         }
+  stages {
+    stage("Checkout Master Branch"){
+      when {
+        branch 'master'
+      }
+      steps {
+        script {
+          echo 'In master branch'
+        }
+      }
+    }
+    
+    stage("CheckOut Staging Branch"){
+      when {
+        branch 'staging'
+      }
+      steps {
+        echo 'In staging branch'
+      }
+    }
+    
+    stage("CheckOut Test Branch"){
+      when {
+        branch 'test'
+      }
+      steps {
+        echo 'In test branch'
+      }
+    }
+    
+    stage('Build project A') {
+      when {
+        changeset "adsbrain-feed-etl/**"
+      }
+      steps {
+        echo 'Building in Build A'
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            def dockerfile = 'Dockerfile'
+            def customImage = docker.build("${registry}:${BUILD_NUMBER}", "-f ./adsbrain-feed-etl/docker-images/adsbrain-feed/${dockerfile} ./adsbrain-feed-etl/docker-images/adsbrain-feed/")
+            customImage.push()
+          }
+        }
+      }
+    }
+    
+    stage('Build project B') {
+      when {
+        changeset "ch1-2-migration/**"
+      }
+      steps {
+        echo 'Building in Build B'
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            def dockerfile = 'Dockerfile'
+            def customImage = docker.build("${registry}:${BUILD_NUMBER}", "-f ./ch1-2-migration/docker-images/ch-entity-validation/${dockerfile} ./ch1-2-migration/docker-images/ch-entity-validation/")
+            customImage.push()
+          }
+        }
+      }
+    }
+    
+//     stage('check') {
+//       //         sh 'git tag --contains | head -1'
+//       when {
+//         tag = sh(returnStdout: true, script: "git tag --contains | head -1").trim()
+//       }
+//       steps {
+//         echo 'tags'
 //       }
 //     }
-//     stage('Push Image') {
-//             steps{
-//                 script {
-//                     docker.withRegistry( '', registryCredential ) {
-//                         dockerImage.push("$BUILD_NUMBER")
-//                         dockerImage.push('latest')
-//                     }
-//                 }
-//             }
-//             post{
-//                 success{
-//                     echo "Build and Push Successfully"
-//                 }
-//                 failure{
-//                     echo "Build and Push Failed"
-//                 }
-//             }
-//         }
-
-stage("Deploy to Production"){
-            when {
-                branch 'master'
-            }
-            steps { 
-                echo 'we are in master'
-              
-             }
-            post{
-                success{
-                    echo "Successfully deployed to Production"
-                }
-                failure{
-                    echo "Failed deploying to Production"
-                }
-            }
+    
+    
+    stage("Deploying Master branch"){
+      when {
+        anyOf {
+          branch 'master';
+          changeset "adsbrain-feed-etl/**";
+          changeset "ch1-2-migration/**"
         }
-stage("Deploy to Staging"){
-            when {
-                branch 'staging'
-            }
-            steps {
-              echo 'staging'
-             }
-            post{
-                success{
-                    echo "Successfully deployed to Staging"
-                }
-                failure{
-                    echo "Failed deploying to Staging"
-                }
-            }
-        }
-                stage('Build project A') {
-            when {
-                changeset "adsbrain-feed-etl/**"
-            }
-            steps {
-                echo 'changed in Build A'
-              script {
-                sh '''
-                cd adsbrain-feed-etl/docker-images/adsbrain-feed/
-                    docker build -t ${registry}":$BUILD_NUMBER" .
-                    '''
-                    docker.withRegistry( '', registryCredential ) {
-                      sh 'docker push ${registry}:"$BUILD_NUMBER"'
-                    }
-                }
-            }
-        }
-        stage('Build project B') {
-            when {
-                changeset "ch1-2-migration/**"
-            }
-            steps {
-                echo 'changed in Build B'
-              script {
-                dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                    docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push("$BUILD_NUMBER")
-                        dockerImage.push('latest')
-                    }
-                }
-            }
-        }
-   stage('Build Release') {
-            when {
-                tag pattern: '^release-*', comparator: "REGEXP"
-            }
-     steps {
-        echo 'tags'
-     }
-        }
-//           stage('Build project A') {
-//             when {
-//                 changeset "adsbrain-feed-etl/**"
-//             }
-//             steps {
-//                 echo 'changed in Build A'
-//             }
-//         }
-//         stage('Build project B') {
-//             when {
-//                 changeset "ch1-2-migration/**"
-//             }
-//             steps {
-//                 echo 'changed in Build B'
-//             }
-//         }
- 
+      }
+      steps {
+        echo 'Deployed Master Branch'
+      }
     }
+    
+    stage("Deploying Staging branch"){
+      when {
+        anyOf {
+          branch 'staging';
+          changeset "adsbrain-feed-etl/**";
+          changeset "ch1-2-migration/**"
+        }
+      }
+      steps {
+        echo 'Deployed Staging Branch'
+      }
+    }
+    
+    stage("Deploying Test branch"){
+      when {
+        anyOf {
+          branch 'test';
+          changeset "adsbrain-feed-etl/**";
+          changeset "ch1-2-migration/**"
+        }
+      }
+      steps {
+        echo 'Deployed Test Branch'
+      }
+    }
+  }
 }
