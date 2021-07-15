@@ -1,7 +1,7 @@
 pipeline {
  agent any
   environment {
-    registry = "akanshagiriya/angular"
+    registry = "akanshagiriya/angular123"
     registryCredential = 'Docker_cred'
   }
  
