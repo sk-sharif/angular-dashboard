@@ -81,7 +81,9 @@ stage("Deploy to Staging"){
 //        echo "Building ${env.TAG_NAME}"
 //      }
 //         }
-    sh 'git tag --contains | head -1'
+    stage('check') {
+      steps {sh 'git tag --contains | head -1'}
+    }
 //     def tag = sh(returnStdout: true, script: "git tag --contains | head -1").trim()
 //     if (tag) {
 //         stage("deploy.....") {
