@@ -82,7 +82,7 @@ stage("Deploy to Staging"){
 //      }
 //         }
     
-    def tag = sh(returnStdout: true, script: "git tag --contains | head -1").trim()
+    tag = sh(returnStdout: true, script: "git tag --contains | head -1").trim()
     if (tag) {
         stage("deploy.....") {
             echo 'deploy'
