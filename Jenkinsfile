@@ -58,7 +58,6 @@ pipeline {
       steps {
         echo 'changed in Build B'
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
           docker.withRegistry( '', registryCredential ) {
             def dockerfile = 'Dockerfile'
             def customImage = docker.build("${registry}:${BUILD_NUMBER}", "-f ./ch1-2-migration/docker-images/ch-entity-validation/${dockerfile} ./ch1-2-migration/docker-images/ch-entity-validation/")
