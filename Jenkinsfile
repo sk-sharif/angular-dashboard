@@ -80,24 +80,24 @@ stage("Deploy to Staging"){
                 }
             }
         }
-//    stage('Build Release') {
-//             when {
-//                 tag 'release-*' 
-//             }
-//      steps {
-//         echo 'tags'
-//      }
-//         }
-    stage('Deploy') {
+   stage('Build Release') {
             when {
-    expression {
-        env.TAG_NAME != null
-    }
-}
-            steps {
-                echo 'Deploying only because this commit is tagged...'
+                buildingTag() 
             }
+     steps {
+        echo 'tags'
+     }
         }
+//     stage('Deploy') {
+//             when {
+//     expression {
+//         env.TAG_NAME != null
+//     }
+// }
+//             steps {
+//                 echo 'Deploying only because this commit is tagged...'
+//             }
+//         }
     
     }
 }
