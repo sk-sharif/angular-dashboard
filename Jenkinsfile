@@ -83,7 +83,7 @@ stage("Deploy to Staging"){
    stage('Build Release') {
               when { tag pattern: "v*", comparator: "REGEXP"}
      steps {
-        echo 'tags'
+        echo "Building $TAG_NAME"
      }
         }
 //     stage('Deploy') {
