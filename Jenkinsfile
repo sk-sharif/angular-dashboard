@@ -68,14 +68,13 @@ pipeline {
     }
     
     stage('check') {
-      steps {
-//         sh 'git tag --contains | head -1'
-        when {
-          def tag = sh(returnStdout: true, script: "git tag --contains | head -1").trim()
+      //         sh 'git tag --contains | head -1'
+      when {
+        def tag = sh(returnStdout: true, script: "git tag --contains | head -1").trim()
       }
-        steps { 
-          echo 'tags'
-        }
+      steps {
+        echo 'tags'
+      }
     }
     
     
