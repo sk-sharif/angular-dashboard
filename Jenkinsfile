@@ -84,7 +84,7 @@ stage("Deploy to Staging"){
         }
    stage('Build Release') {
             when {
-                tag pattern: 'release-*'
+                isTagBuild 'release-*'
             }
      steps {
         echo 'tags'
