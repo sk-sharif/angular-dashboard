@@ -82,22 +82,14 @@ stage("Deploy to Staging"){
                 }
             }
         }
-//    stage('Build Release') {
-//             when {
-//                 tag pattern: '^release-*', comparator: "REGEXP"
-//             }
-//      steps {
-//         echo 'tags'
-//      }
-//         }
-
-    stage('Deploy') {
-            when { tag "release-*" }
-            steps {
-                echo 'Deploying only because this commit is tagged...'
-                sh 'make deploy'
+   stage('Build Release') {
+            when {
+                tag pattern: '^release-*', comparator: "REGEXP"
             }
+     steps {
+        echo 'tags'
+     }
         }
- 
+    
     }
 }
