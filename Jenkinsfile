@@ -92,11 +92,10 @@ pipeline {
     
     stage("Deploying Staging branch"){
       when {
-        anyOf {
           branch 'staging';
           changeset "adsbrain-feed-etl/**";
           changeset "ch1-2-migration/**"
-        }
+        
       }
       steps {
         echo 'Deployed Staging Branch'
