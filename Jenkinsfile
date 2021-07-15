@@ -84,7 +84,7 @@ stage("Deploy to Staging"){
         }
    stage('Build Release') {
             when {
-                tag 'release-*'
+                tag 'release-*' 
             }
      steps {
         echo 'tags'
