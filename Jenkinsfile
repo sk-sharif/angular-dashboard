@@ -91,7 +91,7 @@ stage("Deploy to Staging"){
 //      }
 //         }
     stage('Deploy') {
-            when { tag "release-*", comparator: "REGEXP"}
+            when { tag pattern:"release-*", comparator: "REGEXP"}
             steps {
                 echo 'Deploying only because this commit is tagged...'
             }
