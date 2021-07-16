@@ -43,10 +43,7 @@ pipeline {
         echo 'Building in Build A'
         sh 'ls'
         sh 'pwd'
-        sh '''
-        cd ./adsbrain-feed-etl
-        build 'Jenkinsfile'
-        '''
+        build 'adsbrain-feed-etl'
 //         script {
 //           docker.withRegistry( '', registryCredential ) {
 //             def dockerfile = 'Dockerfile'
