@@ -68,15 +68,15 @@ pipeline {
       }
     }
     
-    stage('check') {
-      //         sh 'git tag --contains | head -1'
-      when {
-        tag = sh(returnStdout: true, script: "git tag --contains | head -1").trim()
-      }
-      steps {
-        echo 'tags'
-      }
-    }
+//     stage('check') {
+//       //         sh 'git tag --contains | head -1'
+//       when {
+//         tag = sh(returnStdout: true, script: "git tag --contains | head -1").trim()
+//       }
+//       steps {
+//         echo 'tags'
+//       }
+//     }
     
     
     stage("Deploying Master branch"){
