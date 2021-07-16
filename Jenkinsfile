@@ -45,7 +45,7 @@ pipeline {
         sh 'pwd'
 //         build job: './adsbrain-feed-etl', propagate: true, wait: true
 //         build(job:'../angular-dashboard/adsbrain-feed-etl', propagate: false)
-        build 'etl_*/adsbrain-feed-etl'
+        build 'etl_test/adsbrain-feed-etl'
 //         script {
 //           docker.withRegistry( '', registryCredential ) {
 //             def dockerfile = 'Dockerfile'
