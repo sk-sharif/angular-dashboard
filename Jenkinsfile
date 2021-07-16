@@ -41,6 +41,8 @@ pipeline {
       }
       steps {
         echo 'Building in Build A'
+        sh 'ls'
+        sh 'pwd'
         build './adsbrain-feed-etl/Jenkinsfile'
 //         script {
 //           docker.withRegistry( '', registryCredential ) {
