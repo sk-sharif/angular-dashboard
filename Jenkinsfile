@@ -44,7 +44,8 @@ pipeline {
         sh 'ls'
         sh 'pwd'
 //         build job: './adsbrain-feed-etl', propagate: true, wait: true
-        build 'etl-*/adsbrain-feed-etl'
+        build(job:'etl-*/adsbrain-feed-etl', propagate: false)
+//         build 'etl-*/adsbrain-feed-etl'
 //         script {
 //           docker.withRegistry( '', registryCredential ) {
 //             def dockerfile = 'Dockerfile'
