@@ -41,13 +41,14 @@ pipeline {
       }
       steps {
         echo 'Building in Build A'
-        script {
-          docker.withRegistry( '', registryCredential ) {
-            def dockerfile = 'Dockerfile'
-            def customImage = docker.build("${registry}:${BUILD_NUMBER}", "-f ./adsbrain-feed-etl/docker-images/adsbrain-feed/${dockerfile} ./adsbrain-feed-etl/docker-images/adsbrain-feed/")
-            customImage.push()
-          }
-        }
+        build 'adsbrain-feed-etl'
+//         script {
+//           docker.withRegistry( '', registryCredential ) {
+//             def dockerfile = 'Dockerfile'
+//             def customImage = docker.build("${registry}:${BUILD_NUMBER}", "-f ./adsbrain-feed-etl/docker-images/adsbrain-feed/${dockerfile} ./adsbrain-feed-etl/docker-images/adsbrain-feed/")
+//             customImage.push()
+//           }
+//         }
       }
     }
     
