@@ -43,22 +43,23 @@ stage("Deploy to Staging"){
                 }
             }
         }
-                stage('Build project A') {
-            when {
-                changeset "adsbrain-feed-etl/**"
-            }
+    stage('Build project A') {
+      when {
+        changeset "adsbrain-feed-etl/**"
+      }
             steps {
-                echo 'changed in Build A'
-              script {
-                sh '''
-                cd adsbrain-feed-etl/docker-images/adsbrain-feed/
-                    docker build -t ${registry}":$BUILD_NUMBER" .
-                    '''
-                    docker.withRegistry( '', registryCredential ) {
-                      sh 'docker push ${registry}:"$BUILD_NUMBER"'
-                    }
-                }
-            }
+              build 'adsbrain-feed-etl'
+//                 echo 'changed in Build A'
+//               script {
+//                 sh '''
+//                 cd adsbrain-feed-etl/docker-images/adsbrain-feed/
+//                     docker build -t ${registry}":$BUILD_NUMBER" .
+//                     '''
+//                     docker.withRegistry( '', registryCredential ) {
+//                       sh 'docker push ${registry}:"$BUILD_NUMBER"'
+//                     }
+//                 }
+//             }
         }
         stage('Build project B') {
             when {
