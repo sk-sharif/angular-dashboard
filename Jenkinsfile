@@ -58,13 +58,14 @@ pipeline {
       }
       steps {
         echo 'Building in Build B'
-        script {
-          docker.withRegistry( '', registryCredential ) {
-            def dockerfile = 'Dockerfile'
-            def customImage = docker.build("${registry}:${BUILD_NUMBER}", "-f ./ch1-2-migration/docker-images/ch-entity-validation/${dockerfile} ./ch1-2-migration/docker-images/ch-entity-validation/")
-            customImage.push()
-          }
-        }
+        build 'ch1-2-migration'
+//         script {
+//           docker.withRegistry( '', registryCredential ) {
+//             def dockerfile = 'Dockerfile'
+//             def customImage = docker.build("${registry}:${BUILD_NUMBER}", "-f ./ch1-2-migration/docker-images/ch-entity-validation/${dockerfile} ./ch1-2-migration/docker-images/ch-entity-validation/")
+//             customImage.push()
+//           }
+//         }
       }
     }
     
