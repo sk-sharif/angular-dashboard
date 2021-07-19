@@ -88,30 +88,31 @@ pipeline {
       }
     }
     
-//     stage('check') {
-//       //         sh 'git tag --contains | head -1'
+//     stage('Deploy') {
 //       when {
-//         tag = sh(returnStdout: true, script: "git tag --contains | head -1").trim()
+//         branch 'master';
+//         expression { sh([returnStdout: true, script: 'echo $TAG_NAME | tr -d \'\n\'']) }     
 //       }
 //       steps {
-//         echo 'tags'
+//         script {
+// //         docker.withRegistry( '', registryCredential ) {
+// //             customImages.push()
+// //           }
+//           echo 'tag'
+//         }
 //       }
 //     }
     
-    stage('Deploy') {
-      when {
-        branch 'master';
-        expression { sh([returnStdout: true, script: 'echo $TAG_NAME | tr -d \'\n\'']) }     
-      }
-      steps {
-        script {
-//         docker.withRegistry( '', registryCredential ) {
-//             customImages.push()
-//           }
-          echo 'tag'
-        }
-      }
-    }
+    stage('tag') {
+  when {
+	  branch 'master'
+	  expression { sh([returnStdout: true, script: 'echo $TAG_NAME | tr -d \'\n\'']) } 
+  }
+  steps {
+    echo 'Replace this with your actual deployment steps'
+  }
+}
+
     
     
     stage("Deploying Master branch"){
