@@ -105,9 +105,10 @@ pipeline {
       }
       steps {
         script {
-        docker.withRegistry( '', registryCredential ) {
-            customImages.push()
-          }
+//         docker.withRegistry( '', registryCredential ) {
+//             customImages.push()
+//           }
+          echo 'tag'
         }
       }
     }
