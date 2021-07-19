@@ -92,6 +92,14 @@ stage("Deploy to Staging"){
 //                 echo 'Deploying only because this commit is tagged...'
 //             }
 //         }
-    
+      stage('Deploy') {
+        when {
+          branch 'master'
+	        expression { sh([returnStdout: true, script: 'echo $TAG_NAME | tr -d \'\n\'']) } 
+        }
+        steps {
+          echo 'Replace this with your actual deployment steps'
+        }
+      }
     }
 }
