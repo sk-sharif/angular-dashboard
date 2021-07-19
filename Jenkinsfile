@@ -100,7 +100,7 @@ pipeline {
     
     stage('Deploy') {
       when {
-        branch 'master'
+        branch 'master';
         expression { sh([returnStdout: true, script: 'echo $TAG_NAME | tr -d \'\n\'']) }     
       }
       steps {
