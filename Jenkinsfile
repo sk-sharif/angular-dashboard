@@ -55,8 +55,10 @@ pipeline {
     
      stage('Build project A master branch') {
       when {
-        branch 'master'
-        changeset "adsbrain-feed-etl/**"
+        allOf {
+          branch 'master'
+          changeset "adsbrain-feed-etl/**"
+        }
       }
       steps {
         script {
