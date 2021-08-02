@@ -1,0 +1,16 @@
+pipeline {
+  agent any 
+  
+  stages {
+    stage('db migration ') {
+      when {
+        expression {env.BRANCH_NAME == 'test' && changeset "ch1-2-migration/schema/migration/**"}
+      }
+      steps {
+        script {
+          echo 'changes in ch1-2-migration/schema/migration'  
+        }
+      }
+    }
+  }
+}
