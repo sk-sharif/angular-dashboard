@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('db migration ') {
       when {
-        expression {env.BRANCH_NAME == 'test' && changeset "ch1-2-migration/schema/migration/**"}
+        expression {env.BRANCH_NAME == 'test' && changeset 'ch1-2-migration/schema/migration/**'}
       }
       steps {
         script {
